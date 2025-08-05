@@ -74,7 +74,7 @@ export default function HangarPage() {
   return (
     <main className="flex min-h-screen flex-col items-center p-8 bg-gray-900 text-white">
       <h1 className="text-4xl font-bold text-red-500 mb-2 tracking-wider">
-        {player.username}'s Hangar
+        {player.username}&apos;s Hangar
       </h1>
       <p className="text-lg text-gray-400 mb-8">Level {player.level}</p>
 
