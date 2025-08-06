@@ -1,13 +1,13 @@
-// src/app/page.tsx (The new Login Page)
+// src/app/page.tsx (The Final Login Page)
 'use client';
 
 import { MiniKit } from '@worldcoin/minikit-js';
-import { useRouter } from 'next/navigation'; // 1. นำเข้า useRouter
+// เราไม่ต้องการ useRouter แล้ว เลยลบทิ้งไป
+// import { useRouter } from 'next/navigation'; 
 
 export default function LoginPage() {
-  const router = useRouter(); // 2. สร้าง instance ของ router
+  // const router = useRouter(); // ไม่ต้องใช้แล้ว
 
-  // 3. อัปเกรดฟังก์ชัน handleLogin
   const handleLogin = async () => {
     if (!MiniKit.isInstalled()) {
       console.log("Please open this in World App");
@@ -18,14 +18,15 @@ export default function LoginPage() {
     try {
       console.log("Opening World ID verification...");
       const result = await MiniKit.commandsAsync.verify({
-        action: 'login', // <-- Action ID ที่คุณสร้างใน Developer Portal
-        signal: 'user-login-signal', // Optional: for advanced anti-fraud
+        action: 'login',
+        signal: 'user-login-signal',
       });
 
       if (result) {
         console.log("Verification successful!", result);
-        // 4. ถ้าสำเร็จ ให้พาไปที่หน้าโรงเก็บยาน
-        router.push('/hangar');
+
+        // [แก้ไข] เปลี่ยนมาใช้ window.location.href แทน
+        window.location.href = '/hangar'; 
       }
     } catch (error) {
       console.error("Verification failed:", error);
